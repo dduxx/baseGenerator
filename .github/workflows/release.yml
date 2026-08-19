@@ -84,7 +84,11 @@ jobs:
         run: |
           sed -i "s/^BUILDSCAD_VERSION=.*/BUILDSCAD_VERSION=${{ steps.version.outputs.new_version }}/" buildscad.properties
           git add buildscad.properties
-          git commit -m "chore: bump version to ${{ steps.version.outputs.new_version }}"
+          if git diff --cached --quiet; then
+            echo "No version change to commit"
+          else
+            git commit -m "chore: bump version to ${{ steps.version.outputs.new_version }}"
+          fi
 
       - name: Tag and push
         run: |
