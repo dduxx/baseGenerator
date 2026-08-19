@@ -1,3 +1,4 @@
+/* [General:] */
 // The type of base to generate
 BASE_TYPE = "r"; // [r:Round, s:Square, p:Pill]
 
